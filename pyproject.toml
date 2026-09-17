@@ -1,0 +1,67 @@
+[project]
+name = "medical-assistant-rag-nlp"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "huggingface_hub",
+    "numpy",
+    "pandas",
+    "tiktoken",
+    "pymupdf",
+    "langchain",
+    "langchain-community",
+    "langchain-text-splitters",
+    "chromadb",
+    "sentence-transformers",
+    "langchain-chroma",
+    "langchain-huggingface",
+]
+
+[project.optional-dependencies]
+gpu = ["torch", "torchvision", "llama-cpp-python"]
+cpu = ["torch", "torchvision", "llama-cpp-python"]
+
+[dependency-groups]
+dev = ["jupyter", "ipykernel"]
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "llamacpp-cu130"
+url = "https://abetlen.github.io/llama-cpp-python/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "llamacpp-cpu"
+url = "https://abetlen.github.io/llama-cpp-python/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu130", extra = "gpu" },
+    { index = "pytorch-cpu", extra = "cpu" },
+]
+torchvision = [
+    { index = "pytorch-cu130", extra = "gpu" },
+    { index = "pytorch-cpu", extra = "cpu" },
+]
+llama-cpp-python = [
+    { index = "llamacpp-cu130", extra = "gpu" },
+    { index = "llamacpp-cpu", extra = "cpu" },
+]
+
+[tool.uv]
+conflicts = [
+    [
+        { extra = "gpu" },
+        { extra = "cpu" },
+    ],
+]

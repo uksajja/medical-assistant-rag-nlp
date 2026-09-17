@@ -1,0 +1,22 @@
+.git/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.conda/
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.gitignore
+
+# Vector store / embeddings persistence
+chroma_db/
+chroma/
+.chroma/
+vector_db/
+vectorstore/
+*.sqlite3
+*.faiss
+*.index
+embeddings_cache/
